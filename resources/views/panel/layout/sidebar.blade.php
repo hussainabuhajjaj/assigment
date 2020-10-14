@@ -54,7 +54,7 @@
             <ul class="kt-menu__nav ">
 
                 <li class="kt-menu__section ">
-                    <h4 class="kt-menu__section-text">مستخدمي اللوحة</h4>
+                    <h4 class="kt-menu__section-text">Dashboard Users</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
 
@@ -63,61 +63,16 @@
                         <i class="kt-menu__link-icon fa fa-home">
                             <span></span>
                         </i>
-                        <span class="kt-menu__link-text">الرئيسية</span>
+                        <span class="kt-menu__link-text">Main</span>
                     </a>
                 </li>
 
                 @canany(['show_admins' , 'add_admins'])
-                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
-                    data-ktmenu-submenu-toggle="hover">
-                    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                        <span class="kt-menu__link-icon"><i class="fa fa-user-lock"></i></span>
-                        <span class="kt-menu__link-text">المديرين</span>
-                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                    </a>
-
-                    <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-                        <ul class="kt-menu__subnav">
-                            <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
-                                    class="kt-menu__link"><span
-                                        class="kt-menu__link-text">المديرين</span></span></li>
-                            @can('show_admins')
-                                <li class="kt-menu__item " aria-haspopup="true"><a
-                                        href="{{ route('panel.admins.index') }}" class="kt-menu__link "><i
-                                            class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                            class="kt-menu__link-text">الكل</span></a></li>
-                            @endcan
-
-                            @can('add_admins')
-                            <li class="kt-menu__item " aria-haspopup="true"><a
-                                    href="{{ route('panel.admins.create') }}" class="kt-menu__link "><i
-                                        class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                        class="kt-menu__link-text">إضافة</span></a></li>
-                            @endcan
-
-
-                        </ul>
-                    </div>
-                </li>
-                @endcanany
-
-                @can('add_roles')
-                    <li class="kt-menu__item " aria-haspopup="true">
-                        <a href="{{ route('panel.permission.index') }}" class="kt-menu__link ">
-                            <i class="kt-menu__link-icon fa fa-lock">
-                                <span></span>
-                            </i>
-                            <span class="kt-menu__link-text">الصلاحيات</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @canany(['show_users' , 'add_users'])
                     <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                         data-ktmenu-submenu-toggle="hover">
                         <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                            <span class="kt-menu__link-icon"><i class="fa fa-users"></i></span>
-                            <span class="kt-menu__link-text">المستخدمين</span>
+                            <span class="kt-menu__link-icon"><i class="fa fa-user-lock"></i></span>
+                            <span class="kt-menu__link-text">Admins</span>
                             <i class="kt-menu__ver-arrow la la-angle-right"></i>
                         </a>
 
@@ -125,19 +80,52 @@
                             <ul class="kt-menu__subnav">
                                 <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
                                         class="kt-menu__link"><span
-                                            class="kt-menu__link-text">المستخدمين</span></span></li>
-                                @can('show_users')
+                                            class="kt-menu__link-text">Admins</span></span></li>
+                                @can('show_admins')
                                     <li class="kt-menu__item " aria-haspopup="true"><a
-                                            href="{{ route('panel.users.index') }}" class="kt-menu__link "><i
+                                            href="{{ route('panel.admins.index') }}" class="kt-menu__link "><i
                                                 class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                                class="kt-menu__link-text">الكل</span></a></li>
+                                                class="kt-menu__link-text">All</span></a></li>
                                 @endcan
 
-                                @can('add_users')
+                                @can('add_admins')
                                     <li class="kt-menu__item " aria-haspopup="true"><a
-                                            href="{{ route('panel.users.create') }}" class="kt-menu__link "><i
+                                            href="{{ route('panel.admins.create') }}" class="kt-menu__link "><i
                                                 class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                                class="kt-menu__link-text">إضافة</span></a></li>
+                                                class="kt-menu__link-text">Add</span></a></li>
+                                @endcan
+
+
+                            </ul>
+                        </div>
+                    </li>
+                @endcanany
+                @canany(['show_items' , 'add_items'])
+                    <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                        data-ktmenu-submenu-toggle="hover">
+                        <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                            <span class="kt-menu__link-icon"><i class="fa fa-user-lock"></i></span>
+                            <span class="kt-menu__link-text">Items</span>
+                            <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                        </a>
+
+                        <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+                            <ul class="kt-menu__subnav">
+                                <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
+                                        class="kt-menu__link"><span
+                                            class="kt-menu__link-text">items</span></span></li>
+                                @can('show_items')
+                                    <li class="kt-menu__item " aria-haspopup="true"><a
+                                            href="{{ route('panel.items.index') }}" class="kt-menu__link "><i
+                                                class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                class="kt-menu__link-text">All</span></a></li>
+                                @endcan
+
+                                @can('add_items')
+                                    <li class="kt-menu__item " aria-haspopup="true"><a
+                                            href="{{ route('panel.items.create') }}" class="kt-menu__link "><i
+                                                class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                                class="kt-menu__link-text">Add</span></a></li>
                                 @endcan
 
 
@@ -146,77 +134,32 @@
                     </li>
                 @endcanany
 
+                                @can('add_roles')
+                                    <li class="kt-menu__item " aria-haspopup="true">
+                                        <a href="{{ route('panel.permission.index') }}" class="kt-menu__link ">
+                                            <i class="kt-menu__link-icon fa fa-lock">
+                                                <span></span>
+                                            </i>
+                                            <span class="kt-menu__link-text">الصلاحيات</span>
+                                        </a>
+                                    </li>
+                                @endcan
 
 
+                                <li class="kt-menu__section ">
+                                    <h4 class="kt-menu__section-text">إعدادات وثوابت الموقع</h4>
+                                    <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                                </li>
 
 
-                @can('manage_pages')
-                    <li class="kt-menu__section ">
-                        <h4 class="kt-menu__section-text">صفحات الموقع</h4>
-                        <i class="kt-menu__section-icon flaticon-more-v2"></i>
-                    </li>
-
-
-                    <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
-                        data-ktmenu-submenu-toggle="hover">
-                        <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-                            <span class="kt-menu__link-icon"><i class="fa fa-file"></i></span>
-                            <span class="kt-menu__link-text">صفحات الموقع</span>
-                            <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                        </a>
-
-                        <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-                            <ul class="kt-menu__subnav">
-                                <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
-                                        class="kt-menu__link"><span
-                                            class="kt-menu__link-text">صفحات الموقع</span></span></li>
-                                <li class="kt-menu__item " aria-haspopup="true"><a
-                                        href="{{ route('panel.pages.create') }}" class="kt-menu__link "><i
-                                            class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                            class="kt-menu__link-text">إضافة صفحة</span></a></li>
-
-                                <li class="kt-menu__item " aria-haspopup="true"><a
-                                        href="{{ route('panel.pages.index') }}" class="kt-menu__link "><i
-                                            class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-                                            class="kt-menu__link-text">جميع الصفحات</span></a></li>
-
-
-                            </ul>
-                        </div>
-                    </li>
-                @endcan
-
-
-                <li class="kt-menu__section ">
-                    <h4 class="kt-menu__section-text">البريد الوارد</h4>
-                    <i class="kt-menu__section-icon flaticon-more-v2"></i>
-                </li>
-
-
-                <li class="kt-menu__item " aria-haspopup="true">
-                    <a href="{{ route('panel.contacts.index') }}" class="kt-menu__link ">
-                        <i class="kt-menu__link-icon fa fa-mail-bulk">
-                            <span></span>
-                        </i>
-                        <span class="kt-menu__link-text">البريد الوارد</span>
-                    </a>
-                </li>
-
-
-                <li class="kt-menu__section ">
-                    <h4 class="kt-menu__section-text">إعدادات وثوابت الموقع</h4>
-                    <i class="kt-menu__section-icon flaticon-more-v2"></i>
-                </li>
-
-
-                <li class="kt-menu__item " aria-haspopup="true">
-                    <a href="{{ route('panel.settings.index') }}" class="kt-menu__link ">
-                        <i class="kt-menu__link-icon fa fa-cogs">
-                            <span></span>
-                        </i>
-                        <span class="kt-menu__link-text">الإعدادات</span>
-                    </a>
-                </li>
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a href="{{ route('panel.settings.index') }}" class="kt-menu__link ">
+                                        <i class="kt-menu__link-icon fa fa-cogs">
+                                            <span></span>
+                                        </i>
+                                        <span class="kt-menu__link-text">الإعدادات</span>
+                                    </a>
+                                </li>
 
 
             </ul>

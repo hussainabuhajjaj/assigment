@@ -24,8 +24,11 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     Route::group(['middleware' => 'auth:admin'], function () {
 
         Route::get('index', 'HomeController@index')->name('index');
+        Route::group(['prefix' => 'items', 'as' => 'items.' ], function () {
 
+            Route::post('store', ['as' => 'store', 'uses' => 'HomeController@store']);
 
+        });
         Route::group(['prefix' => 'admins', 'as' => 'admins.' ], function () {
 
             Route::get('/', ['as' => 'index', 'middleware' => 'permission:show_admins' , 'uses' => 'AdminController@index']);
@@ -39,6 +42,21 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 Route::get('/edit', ['as' => 'edit', 'uses' => 'AdminController@edit']);
                 Route::put('/edit', ['as' => 'update', 'uses' => 'AdminController@update']);
                 Route::delete('/', ['as' => 'destroy', 'uses' => 'AdminController@destroy']);
+            });
+        });
+        Route::group(['prefix' => 'items', 'as' => 'items.' ], function () {
+
+            Route::get('/', ['as' => 'index', 'middleware' => 'permission:show_items' , 'uses' => 'ItemsController@index']);
+            Route::get('/datatable', ['as' => 'datatable', 'middleware' => 'permission:show_items' , 'uses' => 'ItemsController@datatable']);
+
+            Route::group(['prefix' => 'create' , 'middleware' => 'permission:add_items'], function () {
+                Route::get('/', ['as' => 'create', 'uses' => 'ItemsController@create']);
+                Route::post('/', ['as' => 'store', 'uses' => 'ItemsController@store']);
+            });
+            Route::group(['prefix' => '{id}' , 'middleware' => 'permission:add_items'], function () {
+                Route::get('/edit', ['as' => 'edit', 'uses' => 'ItemsController@edit']);
+                Route::put('/edit', ['as' => 'update', 'uses' => 'ItemsController@update']);
+                Route::delete('/', ['as' => 'destroy', 'uses' => 'ItemsController@destroy']);
             });
         });
 

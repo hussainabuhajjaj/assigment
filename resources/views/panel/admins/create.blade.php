@@ -1,4 +1,4 @@
-@extends('panel.layout.master' , ['title' => 'إضافة مدير'])
+@extends('panel.layout.master' , ['title' => 'Add Admins'])
 
 @push('css')
     <link href="{{asset('panelAssets/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css"/>
@@ -8,7 +8,7 @@
     <div class="kt-subheader  kt-grid__item" id="kt_subheader">
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
-                <h3 class="kt-subheader__title">إضافة مدير</h3>
+                <h3 class="kt-subheader__title">Add Admins</h3>
             </div>
         </div>
     </div>
@@ -32,24 +32,24 @@
             <div class="kt-portlet kt-portlet--tabs">
                 <div class="kt-portlet__body">
                     <div class="form-group">
-                        <label>الإسم</label>
+                        <label>Name</label>
                         <input class="form-control m-input" type="text" name="name"
-                               value="{{ isset($item) ? $item->name : "" }}" required placeholder="الإسم">
+                               value="{{ isset($item) ? $item->name : "" }}" required placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <label>البريد الإلكتروني</label>
+                        <label>E-mail</label>
                         <input class="form-control m-input" type="email" required name="email"
-                               placeholder="البريد الإلكتروني" value="{{ isset($item) ? $item->email : "" }}" >
+                               placeholder="E-mail" value="{{ isset($item) ? $item->email : "" }}" >
                     </div>
                     <div class="form-group">
-                        <label>كلمة المرور</label>
+                        <label>Password</label>
                         <input class="form-control m-input" type="password" {{ isset($item) ? '' : "required" }}  name="password" id="password"
-                               placeholder="كلمة المرور">
+                               placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <label>تاكيد كلمة المرور</label>
+                        <label>C-Password</label>
                         <input class="form-control m-input" type="password" {{ isset($item) ? '' : "required" }}  name="password_confirmation"
-                               placeholder="تاكيد كلمة المرور">
+                               placeholder="C-Password">
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label" style="width: 100%;">
                         <button type="submit" style="width: 100%;" id="m_login_signin_submit" class="btn btn-brand">
-                            حفظ
+                            Add
                         </button>
                     </div>
                 </div>
@@ -71,11 +71,10 @@
 
 
                     <div class="form-group">
-                        <label>الصلاحيات</label>
+                        <label>Permissions</label>
                         <select class="form-control kt-selectpicker" name="role_id">
                             @foreach(roles() as $role)
-                                <option
-                                    value="{{ $role->id }}" {{ isset($item) ? ($role->id == $item->roles[0]->id ? 'selected' : '') : '' }}>{{ $role->name }}</option>
+                                <option value="{{ $role->id }}" {{ isset($item) ? ($role->id == $item->roles[0]->id ? 'selected' : '') : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
